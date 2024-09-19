@@ -1,5 +1,5 @@
 import 'dart:js_interop';
-
+import 'dart:ui_web';
 import 'package:web/web.dart';
 
 /// This is an implementation of the `import_js_library` plugin that is used
@@ -20,10 +20,10 @@ Future<void> importJsLibrary(
 String _libraryUrl(String url, String pluginName) {
   if (url.startsWith('./')) {
     url = url.replaceFirst('./', '');
-    return './assets/packages/$pluginName/$url';
+    return assetManager.getAssetUrl("packages/$pluginName/$url");
   }
   if (url.startsWith('assets/')) {
-    return './assets/packages/$pluginName/$url';
+    return assetManager.getAssetUrl("packages/$pluginName/$url");
   } else {
     return url;
   }
